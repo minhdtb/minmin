@@ -9,6 +9,8 @@ import * as helmet from 'helmet'
 import * as bodyParser from "body-parser"
 import * as cookieParser from "cookie-parser"
 import * as  session from 'express-session'
+import * as cors from 'cors'
+
 import {Error as RError, Result} from "./common/Response"
 import "reflect-metadata"
 
@@ -22,7 +24,7 @@ export class WebServer extends HttpServer {
 
     private nuxt: any;
 
-    constructor(nuxtConfig?) {
+    constructor(nuxtConfig?, useCors?: boolean) {
         let application = express();
         super(application);
 
@@ -39,6 +41,9 @@ export class WebServer extends HttpServer {
         }));
         this.express.use(compression({threshold: 0}));
         this.express.use(helmet());
+
+        if (useCors)
+            this.express.use(cors);
 
         if (nuxtConfig) {
             const {Nuxt} = require('nuxt');
