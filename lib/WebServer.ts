@@ -43,7 +43,7 @@ export class WebServer extends HttpServer {
         this.express.use(helmet());
 
         if (useCors)
-            this.express.use(cors);
+            this.express.use(cors());
 
         if (nuxtConfig) {
             const {Nuxt} = require('nuxt');
