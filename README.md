@@ -6,11 +6,27 @@ MinMin là một web framework nhỏ được viết bằng typescript dựa tr�
 
 ### Cài đặt
 
+Cài đặt minmin
+
 ```npm install --save minmin```
+
+
+Thay đổi config của typescript trong tsconfig.json
+
+```json
+{
+  "compilerOptions": {
+      ...
+      "experimentalDecorators": true,
+      "emitDecoratorMetadata": true,
+      ...
+  }
+}
+```
 
 ### Khai báo Controller 
 
-Bước đầu tiên chúng ta tạo file ```ApiController.ts``` sau đó khai báo controller với ```base url``` tương ứng là ```/api```
+Đầu tiên chúng ta tạo file ```ApiController.ts``` sau đó khai báo controller với ```base url``` tương ứng là ```/api```
 
 ```ts
 @Controller('api')
