@@ -1,7 +1,12 @@
 ## 1. Intro
-Minmin là một web framework nhỏ được viết bằng typescript dựa trên expressjs và lấy cảm hứng từ Spring Web
+
+MinMin là một web framework nhỏ được viết bằng typescript dựa trên expressjs và lấy cảm hứng từ Spring Web
 
 ## 2. Hướng dẫn sử dụng
+
+### Cài đặt
+
+```npm install --save minmin```
 
 ### Khai báo Controller 
 
