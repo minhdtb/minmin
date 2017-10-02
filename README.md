@@ -56,7 +56,7 @@ Bước cuối cùng là start web server
 import {WebServer} from "./core/WebServer"
 import './controllers/ApiController' // rất quan trọng
 
-const server = new WebServer(config);
+const server = new WebServer();
 server.setPort(3000);
 server.start();
   ```
