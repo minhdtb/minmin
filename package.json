@@ -15,7 +15,6 @@
     "@types/cors": "^2.8.1",
     "@types/express": "^4.0.37",
     "@types/helmet": "0.0.36",
-    "@types/node": "~6.0.46",
     "@types/winston": "^2.3.6",
     "gulp": "^3.9.1",
     "gulp-clean": "^0.3.2",
@@ -37,6 +36,7 @@
   "author": "minhdtb <minhdtb.83@gmail.com>",
   "license": "MIT",
   "dependencies": {
+    "@types/node": "^8.0.33",
     "body-parser": "^1.18.1",
     "compression": "^1.7.0",
     "cookie-parser": "^1.4.3",
