@@ -17,6 +17,11 @@ Thay đổi config của typescript trong tsconfig.json
 {
   "compilerOptions": {
       ...
+      "lib": [
+      "dom",
+      "es2015"
+      ],
+      "moduleResolution": "node",
       "experimentalDecorators": true,
       "emitDecoratorMetadata": true,
       ...
