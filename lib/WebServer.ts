@@ -3,7 +3,6 @@ import * as express from "express"
 import * as _ from "lodash"
 import {HttpMethod} from "./common/HttpMethod"
 import {buildUrl} from "./common/Route"
-import {View} from "./common/View"
 import * as compression from 'compression'
 import * as helmet from 'helmet'
 import * as bodyParser from "body-parser"
@@ -11,7 +10,7 @@ import * as cookieParser from "cookie-parser"
 import * as  session from 'express-session'
 import * as cors from 'cors'
 
-import {Error as RError, Result} from "./common/Response"
+import {Error as RError, IResponse} from "./common/Response"
 import "reflect-metadata"
 
 const SESSION_SECRET = '220183';
@@ -84,6 +83,10 @@ export class WebServer extends HttpServer {
         }
     }
 
+    private static validResponse(result: any): result is IResponse {
+        return (result as IResponse).exec !== undefined;
+    }
+
     private createRoute(route, instance, parameters) {
         return async (req: express.Request, res: express.Response) => {
             const values: any[] = [];
@@ -104,25 +107,12 @@ export class WebServer extends HttpServer {
                     this.getLogger().error(e);
                     result = new RError(500, 'Internal server error.');
                 }
-            } else if (result instanceof View) {
-                return res.render(result.template, result.options);
             }
 
-            if (result instanceof RError) {
-                res.status(result.code).json({
-                    ok: false,
-                    message: result.message
-                })
-            } else if (result instanceof Result) {
-                let object = {
-                    ok: true
-                };
-
-                if (result.name && result.content)
-                    object[result.name] = result.content;
-
-                res.json(object);
-            } else {
+            if (WebServer.validResponse(result)) {
+                return result.exec(res);
+            }
+            else {
                 throw new Error('Invalid return type.')
             }
         };
