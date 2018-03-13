@@ -21,6 +21,7 @@ Thay đổi config của typescript trong tsconfig.json
       "dom",
       "es2015"
       ],
+      "target": "es5",
       "moduleResolution": "node",
       "experimentalDecorators": true,
       "emitDecoratorMetadata": true,
@@ -79,7 +80,7 @@ app.post('/api/login', function(req, res) {
 Bước cuối cùng là start web server
 
 ```ts
-import {WebServer} from "./core/WebServer"
+import {WebServer} from "minmin"
 import './controllers/ApiController' // rất quan trọng
 
 const server = new WebServer();
