@@ -1,13 +1,11 @@
 {
   "name": "minmin",
-  "version": "0.0.16",
+  "version": "0.0.17",
   "repository": {
     "type": "git",
     "url": "https://github.com/minhdtb/minmin.git"
   },
   "main": "dist/index.js",
-  "typings": "",
-  "typescript": {},
   "description": "MinMin Web Framework",
   "engineStrict": true,
   "devDependencies": {
@@ -15,6 +13,8 @@
     "@types/cors": "^2.8.1",
     "@types/express": "^4.0.37",
     "@types/helmet": "0.0.36",
+    "@types/lodash": "^4.14.115",
+    "@types/node": "^8.0.33",
     "@types/winston": "^2.3.6",
     "gulp": "^3.9.1",
     "gulp-clean": "^0.3.2",
@@ -22,21 +22,20 @@
     "gulp-typescript": "^3.1.3",
     "jasmine": "^2.5.2",
     "merge2": "^1.0.2",
+    "reflect-metadata": "^0.1.10",
     "rimraf": "~2.5.4",
     "run-sequence": "^1.2.2",
     "standard-version": "^3.0.0",
-    "tslint": "~3.15.1",
-    "tslint-microsoft-contrib": "~2.0.13",
     "typescript": "^2.5.2"
   },
   "scripts": {
     "test": "gulp test",
+    "build": "gulp build",
     "release": "standard-version"
   },
   "author": "minhdtb <minhdtb.83@gmail.com>",
   "license": "MIT",
   "dependencies": {
-    "@types/node": "^8.0.33",
     "body-parser": "^1.18.1",
     "compression": "^1.7.0",
     "cookie-parser": "^1.4.3",
@@ -46,7 +45,6 @@
     "helmet": "^3.8.1",
     "lodash": "^4.17.5",
     "moment": "^2.18.1",
-    "reflect-metadata": "^0.1.10",
     "winston": "^2.3.1"
   }
 }
