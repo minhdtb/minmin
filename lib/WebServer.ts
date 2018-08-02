@@ -15,15 +15,20 @@ import "reflect-metadata"
 
 const SESSION_SECRET = '220183';
 
+class Options {
+    nuxt: any;
+    useCors: boolean;
+}
+
 export class WebServer extends HttpServer {
 
     public static readonly controllers: any[] = [];
 
     private express: express.Express;
 
-    private nuxt: any;
+    private readonly nuxt: any;
 
-    constructor(nuxtConfig?, useCors?: boolean) {
+    constructor(options?: Options) {
         let application = express();
         super(application);
 
@@ -38,15 +43,16 @@ export class WebServer extends HttpServer {
             saveUninitialized: false,
             cookie: {maxAge: 1000 * 60 * 60 * 24}
         }));
+
         this.express.use(compression({threshold: 0}));
         this.express.use(helmet());
 
-        if (useCors)
+        if (options && options.useCors)
             this.express.use(cors());
 
-        if (nuxtConfig) {
+        if (options && options.nuxt) {
             const {Nuxt} = require('nuxt');
-            this.nuxt = new Nuxt(nuxtConfig);
+            this.nuxt = new Nuxt(options.nuxt);
         }
     }
 
