@@ -1,6 +1,6 @@
 {
   "name": "minmin",
-  "version": "0.0.20",
+  "version": "0.0.27",
   "repository": {
     "type": "git",
     "url": "https://github.com/minhdtb/minmin.git"
@@ -39,8 +39,7 @@
   "scripts": {
     "compile": "tsc",
     "package": "gulp package",
-    "publish": "gulp publish",
-    "release": "standard-version"
+    "release": "gulp publish"
   },
   "author": "minhdtb <minhdtb.83@gmail.com>",
   "license": "MIT",

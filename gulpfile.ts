@@ -114,7 +114,7 @@ export class Gulpfile {
     packagePublish() {
         return gulp.src("package.json", {read: false})
             .pipe(shell([
-                "cd ./build/package && npm run release && npm publish"
+                "cd ./build/package && npm publish"
             ]));
     }
 
@@ -213,11 +213,9 @@ export class Gulpfile {
     package() {
         return [
             "clean",
-            ["browserCopySources", "browserCopyPlatformTools"],
-            ["packageCompile", "browserCompile"],
+            ["packageCompile"],
             "packageMoveCompiledFiles",
             [
-                "browserClearPackageDirectory",
                 "packageClearPackageDirectory",
                 "packageReplaceReferences",
                 "packagePreparePackageFile",
