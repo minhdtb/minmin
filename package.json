@@ -5,7 +5,7 @@
     "type": "git",
     "url": "https://github.com/minhdtb/minmin.git"
   },
-  "main": "dist/index.js",
+  "main": "index.js",
   "description": "MinMin Web Framework",
   "engineStrict": true,
   "devDependencies": {
@@ -18,17 +18,28 @@
     "gulp": "^3.9.1",
     "gulp-clean": "^0.3.2",
     "gulp-jasmine": "^2.4.2",
-    "gulp-typescript": "^3.1.3",
+    "gulp-mocha": "^5.0.0",
+    "gulp-rename": "^1.2.2",
+    "gulp-replace": "^0.6.1",
+    "gulp-shell": "^0.6.5",
+    "gulp-sourcemaps": "^2.6.4",
+    "gulp-tslint": "^8.1.3",
+    "gulp-typescript": "^4.0.2",
+    "gulpclass": "^0.1.2",
     "jasmine": "^2.5.2",
     "merge2": "^1.0.2",
     "rimraf": "~2.5.4",
     "run-sequence": "^1.2.2",
     "standard-version": "^3.0.0",
-    "typescript": "^2.5.2"
+    "ts-node": "^7.0.0",
+    "tslint": "^5.11.0",
+    "tslint-stylish": "^2.1.0",
+    "typescript": "^2.8.1"
   },
   "scripts": {
-    "test": "gulp test",
-    "build": "gulp build",
+    "compile": "tsc",
+    "package": "gulp package",
+    "publish": "gulp publish",
     "release": "standard-version"
   },
   "author": "minhdtb <minhdtb.83@gmail.com>",

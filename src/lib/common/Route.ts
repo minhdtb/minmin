@@ -11,7 +11,7 @@ export interface Route {
     callback: Function
 }
 
-export function getRoutes(target): {} {
+export function getRoutes(target: Object): {} {
     if (!Reflect.hasOwnMetadata('custom:routes', target)) {
         Reflect.defineMetadata('custom:routes', {}, target);
     }
@@ -19,15 +19,15 @@ export function getRoutes(target): {} {
     return Reflect.getOwnMetadata('custom:routes', target);
 }
 
-export function getBaseUrl(target): string {
+export function getBaseUrl(target: Object): string {
     return Reflect.getOwnMetadata('custom:baseUrl', target);
 }
 
-export function setBaseUrl(target, baseUrl: string) {
+export function setBaseUrl(target: Object, baseUrl: string) {
     Reflect.defineMetadata('custom:baseUrl', baseUrl, target);
 }
 
-export function buildUrl(target, method: string, url: string): string {
+export function buildUrl(target: Object, method: string, url: string): string {
     function nomalizeUrl(url: string): string {
         if (url)
             return url.startsWith('/') ? url : '/' + url;
@@ -35,7 +35,7 @@ export function buildUrl(target, method: string, url: string): string {
         return '';
     }
 
-    let parameters = getParameters(target);
+    let parameters = getParameters(target) as any;
     let baseUrl = nomalizeUrl(getBaseUrl(target)) || '/';
     let returnUrl = (baseUrl.length === 1 && url ? nomalizeUrl(url) : baseUrl + nomalizeUrl(url));
 

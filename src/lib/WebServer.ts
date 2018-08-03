@@ -11,7 +11,6 @@ import * as  session from 'express-session'
 import * as cors from 'cors'
 
 import {Error as RError, IResponse} from "./common/Response"
-import "reflect-metadata"
 
 const SESSION_SECRET = '220183';
 
@@ -62,7 +61,7 @@ export class WebServer extends HttpServer {
             await new Builder(this.nuxt).build();
         }
 
-        let router = express.Router();
+        let router: any = express.Router();
         let controllers = WebServer.controllers;
         for (const controller of controllers) {
             let routes = Reflect.getOwnMetadata('custom:routes', controller.prototype);
@@ -93,7 +92,7 @@ export class WebServer extends HttpServer {
         return (result as IResponse).exec !== undefined;
     }
 
-    private createRoute(route, instance, parameters) {
+    private createRoute(route: any, instance: any, parameters: any) {
         return async (req: express.Request, res: express.Response) => {
             const values: any[] = [];
             if (parameters) {

@@ -4,7 +4,7 @@ import {getRoutes} from "../../common/Route";
 
 export function Post<Function>(route?: string, middlewares?: [MiddlewareFunction]): MethodDecorator {
     return (target: Function, method: string, descriptor: TypedPropertyDescriptor<any>) => {
-        let routes = getRoutes(target);
+        let routes = getRoutes(target) as any;
         routes[method] = new HttpRoute(null, method, route, HttpMethod.post, descriptor.value, middlewares);
     };
 }

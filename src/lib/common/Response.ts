@@ -1,7 +1,7 @@
 import * as express from "express"
 
 export interface IResponse {
-    exec(res: express.Response);
+    exec(res: express.Response): void;
 }
 
 export class Result implements IResponse {
@@ -13,7 +13,7 @@ export class Result implements IResponse {
     exec(res: express.Response) {
         let object = {
             ok: true
-        };
+        } as any;
 
         if (this.name && this.content)
             object[this.name] = this.content;

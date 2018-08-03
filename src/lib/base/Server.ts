@@ -30,5 +30,5 @@ export abstract class Server {
         return this.logger;
     }
 
-    abstract start();
+    abstract start(): void;
 }

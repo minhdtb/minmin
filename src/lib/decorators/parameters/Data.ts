@@ -3,7 +3,7 @@ import {getParameters, IParameter, Parameter} from "../../common/Parameter";
 
 export function Data<Function>(name?: string): ParameterDecorator {
     return (target: Object, method: string, index: number) => {
-        let parameters = getParameters(target);
+        let parameters = getParameters(target) as any;
         if (!parameters[method]) {
             parameters[method] = [];
         }
@@ -15,7 +15,7 @@ export function Data<Function>(name?: string): ParameterDecorator {
 
 export class DataParameter extends Parameter implements IParameter {
 
-    constructor(public name: string,
+    constructor(public name: any,
                 public type: Function,
                 public index: Number) {
         super(type);

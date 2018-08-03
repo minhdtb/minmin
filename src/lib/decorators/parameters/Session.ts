@@ -1,20 +1,19 @@
 import 'reflect-metadata';
 import {getParameters, IParameter, Parameter} from "../../common/Parameter";
-import {Request} from 'express';
 
-export function Query<Function>(name: string): ParameterDecorator {
+export function Session<Function>(): ParameterDecorator {
     return (target: Function, method: string, index: number) => {
-        let parameters = getParameters(target);
+        let parameters = getParameters(target) as any;
         if (!parameters[method]) {
             parameters[method] = [];
         }
 
         let type = Reflect.getOwnMetadata('design:paramtypes', target, method)[index];
-        parameters[method].push(new QueryParameter(name, type, index));
+        parameters[method].push(new SessionParameter('', type, index));
     };
 }
 
-export class QueryParameter extends Parameter implements IParameter {
+export class SessionParameter extends Parameter implements IParameter {
 
     constructor(public name: string,
                 public type: Function,
@@ -22,7 +21,7 @@ export class QueryParameter extends Parameter implements IParameter {
         super(type);
     }
 
-    public getValue(req: Request) {
-        return this.getRawValue(req.query[this.name]);
+    public getValue(req: any) {
+        return this.getRawValue(req.session);
     }
 }

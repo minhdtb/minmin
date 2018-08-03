@@ -28,7 +28,7 @@ export abstract class Parameter {
     }
 }
 
-export function getParameters(target): {} {
+export function getParameters(target: Object): {} {
     if (!Reflect.hasOwnMetadata('custom:parameters', target)) {
         Reflect.defineMetadata('custom:parameters', {}, target);
     }

@@ -1,30 +1,31 @@
 {
+  "version": "2.1.1",
   "compilerOptions": {
     "lib": [
-      "es6",
-      "dom",
-      "es2015"
+      "es5",
+      "es6"
     ],
-    "module": "commonjs",
+    "outDir": "build/compiled",
     "target": "es5",
-    "noImplicitAny": false,
+    "module": "commonjs",
     "moduleResolution": "node",
     "emitDecoratorMetadata": true,
-    "noUnusedLocals": false,
-    "sourceMap": true,
-    "allowJs": true,
-    "rootDir": ".",
-    "outDir": "dist",
-    "allowSyntheticDefaultImports": true,
-    "removeComments": true,
     "experimentalDecorators": true,
-    "types": [
-      "node"
-    ]
+    "sourceMap": true,
+    "noImplicitAny": true,
+    "declaration": true,
+    "noFallthroughCasesInSwitch": true,
+    "noImplicitReturns": true,
+    "stripInternal": true,
+    "pretty": true,
+    "strictNullChecks": true,
+    "noUnusedLocals": true,
+    "downlevelIteration": true
   },
-  "include": [
-    "index.ts",
-    "lib/**/*",
-    "spec/**/*"
+  "exclude": [
+    "tmp",
+    "temp",
+    "build",
+    "node_modules"
   ]
 }
