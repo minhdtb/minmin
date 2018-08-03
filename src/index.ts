@@ -10,6 +10,8 @@ export *  from "./lib/decorators/parameters/Data"
 export *  from "./lib/decorators/parameters/Param"
 export *  from "./lib/decorators/parameters/Query"
 export *  from "./lib/decorators/parameters/Session"
+export *  from "./lib/decorators/utils/Inject"
+export *  from "./lib/decorators/utils/Service"
 export *  from './lib/common/Response'
 
 export {WebServer} from "./lib/WebServer"
@@ -22,4 +24,6 @@ export {Data} from "./lib/decorators/parameters/Data"
 export {Param} from "./lib/decorators/parameters/Param"
 export {Query} from "./lib/decorators/parameters/Query"
 export {Session} from "./lib/decorators/parameters/Session"
+export {Inject}  from "./lib/decorators/utils/Inject"
+export {Service}  from "./lib/decorators/utils/Service"
 export {Error, Result, View} from './lib/common/Response'

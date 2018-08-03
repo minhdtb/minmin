@@ -55,6 +55,30 @@ export class WebServer extends HttpServer {
         }
     }
 
+    private static validResponse(result: any): result is IResponse {
+        return (result as IResponse).exec !== undefined;
+    }
+
+    public start() {
+        this.initialize().then(() => {
+            super.start();
+        });
+    }
+
+    private resolveTarget(instance: any, target: any) {
+        for (let key in target) {
+            if (target.hasOwnProperty(key)) {
+                if (Reflect.hasMetadata("custom:inject", target, key)) {
+                    let propertyConstructor = Reflect.getMetadata('design:type', target, key);
+                    if (Reflect.hasMetadata("custom:service", propertyConstructor.prototype)) {
+                        instance[key] = new propertyConstructor;
+                        this.resolveTarget(instance[key], propertyConstructor.prototype);
+                    }
+                }
+            }
+        }
+    }
+
     private async initialize() {
         if (this.nuxt && this.nuxt.options.dev) {
             const {Builder} = require('nuxt');
@@ -64,14 +88,19 @@ export class WebServer extends HttpServer {
         let router: any = express.Router();
         let controllers = WebServer.controllers;
         for (const controller of controllers) {
-            let routes = Reflect.getOwnMetadata('custom:routes', controller.prototype);
-            let parameters = Reflect.getOwnMetadata('custom:parameters', controller.prototype);
+            let target = controller.prototype;
+
+            let routes = Reflect.getOwnMetadata('custom:routes', target);
+            let parameters = Reflect.getOwnMetadata('custom:parameters', target);
+
             let instance = new controller;
+
+            this.resolveTarget(instance, target);
 
             _.keys(routes)
                 .map(key => routes[key])
                 .forEach(route => {
-                    let url = buildUrl(controller.prototype, route.name, route.url);
+                    let url = buildUrl(target, route.name, route.url);
                     this.getLogger().info(HttpMethod[route.method] + ' - ' + url);
 
                     if (route.middlewares)
@@ -86,10 +115,6 @@ export class WebServer extends HttpServer {
         if (this.nuxt) {
             this.express.use(this.nuxt.render);
         }
-    }
-
-    private static validResponse(result: any): result is IResponse {
-        return (result as IResponse).exec !== undefined;
     }
 
     private createRoute(route: any, instance: any, parameters: any) {
@@ -121,11 +146,5 @@ export class WebServer extends HttpServer {
                 throw new Error('Invalid return type.')
             }
         };
-    }
-
-    public start() {
-        this.initialize().then(() => {
-            super.start();
-        });
     }
 }

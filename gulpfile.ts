@@ -1,7 +1,7 @@
 ///<reference path="node_modules/@types/node/index.d.ts"/>
 ///<reference path="node_modules/@types/chai/index.d.ts"/>
 ///<reference path="node_modules/@types/mocha/index.d.ts"/>
-import {Gulpclass, Task, SequenceTask, MergedTask} from "gulpclass";
+import {Gulpclass, MergedTask, SequenceTask, Task} from "gulpclass";
 
 const gulp = require("gulp");
 const del = require("del");
@@ -323,9 +323,6 @@ export class Gulpfile {
         return [
             "clean",
             "compile",
-            "tslint",
-            "wait",
-            "coveragePre",
             "runTests",
             "coveragePost",
             "coverageRemap"
