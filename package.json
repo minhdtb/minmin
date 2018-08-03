@@ -45,7 +45,6 @@
   "author": "minhdtb <minhdtb.83@gmail.com>",
   "license": "MIT",
   "dependencies": {
-    "@types/node": "^8.0.33",
     "body-parser": "^1.18.1",
     "compression": "^1.7.0",
     "cookie-parser": "^1.4.3",
