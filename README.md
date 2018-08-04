@@ -86,7 +86,34 @@ import './controllers/ApiController' // rất quan trọng
 const server = new WebServer();
 server.setPort(3000);
 server.start();
-  ```
+```
+
+### Hỗ trợ Dependency Injection
+
+Hỗ trợ dependency injection bắt đầu từ phiên bản 0.0.32
+
+```ts
+import {Controller, Service, Inject} from "minmin"
+
+@Service()
+class MyService {
+
+  void action() {
+  }
+  
+}
+
+@Controller('api')
+class ApiController {
+
+  @Inject()
+  myService: MyService;
+  
+  
+}
+
+```
+
 ## 3. Decorators
 
 ### Methods
@@ -101,6 +128,11 @@ server.start();
 ```@Param```
 ```@Query```
 ```@Data```
+
+### Dependency Injection
+
+```@Inject```
+```@Service```
 
 ## 4. Classes
 
