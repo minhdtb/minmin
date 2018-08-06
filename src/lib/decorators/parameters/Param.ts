@@ -1,5 +1,6 @@
 import {Request} from 'express';
-import {getParameters, IParameter, Parameter} from "../../common/Parameter";
+import {getParameters} from "../../common/Parameter";
+import {StdParameter} from "../../common/StdParameter";
 
 export function Param<Function>(name?: string, optional?: boolean): ParameterDecorator {
     return (target: Object, method: string, index: number) => {
@@ -13,13 +14,14 @@ export function Param<Function>(name?: string, optional?: boolean): ParameterDec
     };
 }
 
-export class ParamParameter extends Parameter implements IParameter {
+export class ParamParameter extends StdParameter {
 
     constructor(public name: any,
                 public type: Function,
                 public index: Number,
                 public optional?: boolean) {
-        super(type);
+        super(name, type, index);
+
         if (!this.name) {
             this.name = 'value' + this.index;
         }

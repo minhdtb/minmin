@@ -27,9 +27,13 @@ export class WebServer extends HttpServer {
 
     private readonly nuxt: any;
 
+    private root: string | undefined;
+
     constructor(options?: Options) {
         let application = express();
         super(application);
+
+        this.root = undefined;
 
         this.express = application;
         /* default routes */
@@ -57,6 +61,15 @@ export class WebServer extends HttpServer {
 
     private static validResponse(result: any): result is IResponse {
         return (result as IResponse).exec !== undefined;
+    }
+
+    public getRoot(): string | undefined {
+        return this.root;
+    }
+
+    public setRoot(value: string) {
+        this.root = value;
+        return this;
     }
 
     public start() {
@@ -100,7 +113,7 @@ export class WebServer extends HttpServer {
             _.keys(routes)
                 .map(key => routes[key])
                 .forEach(route => {
-                    let url = buildUrl(target, route.name, route.url);
+                    let url = buildUrl(target, route.name, route.url, this.root);
                     this.getLogger().info(HttpMethod[route.method] + ' - ' + url);
 
                     if (route.middlewares)

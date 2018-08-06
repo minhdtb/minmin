@@ -22,6 +22,7 @@ export abstract class HttpServer extends Server {
 
     public setPort(value: Number) {
         this.port = value;
+        return this;
     }
 
     public getHttpServer(): http.Server {

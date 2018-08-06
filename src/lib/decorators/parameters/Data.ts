@@ -1,5 +1,6 @@
 import {Request} from 'express';
-import {getParameters, IParameter, Parameter} from "../../common/Parameter";
+import {getParameters} from "../../common/Parameter";
+import {StdParameter} from "../../common/StdParameter";
 
 export function Data<Function>(name?: string): ParameterDecorator {
     return (target: Object, method: string, index: number) => {
@@ -13,13 +14,7 @@ export function Data<Function>(name?: string): ParameterDecorator {
     };
 }
 
-export class DataParameter extends Parameter implements IParameter {
-
-    constructor(public name: any,
-                public type: Function,
-                public index: Number) {
-        super(type);
-    }
+export class DataParameter extends StdParameter {
 
     public getValue(req: Request) {
         return this.getRawValue(this.name ? req.body[this.name] : req.body);

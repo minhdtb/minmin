@@ -27,7 +27,7 @@ export function setBaseUrl(target: Object, baseUrl: string) {
     Reflect.defineMetadata('custom:baseUrl', baseUrl, target);
 }
 
-export function buildUrl(target: Object, method: string, url: string): string {
+export function buildUrl(target: Object, method: string, url: string, root?: string): string {
     function nomalizeUrl(url: string): string {
         if (url)
             return url.startsWith('/') ? url : '/' + url;
@@ -36,7 +36,8 @@ export function buildUrl(target: Object, method: string, url: string): string {
     }
 
     let parameters = getParameters(target) as any;
-    let baseUrl = nomalizeUrl(getBaseUrl(target)) || '/';
+    let rootUrl = root ? nomalizeUrl(root) : null;
+    let baseUrl = nomalizeUrl(rootUrl ? rootUrl + '/' + getBaseUrl(target) : getBaseUrl(target)) || '/';
     let returnUrl = (baseUrl.length === 1 && url ? nomalizeUrl(url) : baseUrl + nomalizeUrl(url));
 
     let params: IParameter[] = parameters[method] || [];

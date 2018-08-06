@@ -1,5 +1,6 @@
 import 'reflect-metadata';
-import {getParameters, IParameter, Parameter} from "../../common/Parameter";
+import {getParameters} from "../../common/Parameter";
+import {StdParameter} from "../../common/StdParameter";
 
 export function Session<Function>(): ParameterDecorator {
     return (target: Function, method: string, index: number) => {
@@ -13,13 +14,7 @@ export function Session<Function>(): ParameterDecorator {
     };
 }
 
-export class SessionParameter extends Parameter implements IParameter {
-
-    constructor(public name: string,
-                public type: Function,
-                public index: Number) {
-        super(type);
-    }
+export class SessionParameter extends StdParameter {
 
     public getValue(req: any) {
         return this.getRawValue(req.session);
