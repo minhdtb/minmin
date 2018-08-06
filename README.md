@@ -128,6 +128,8 @@ class ApiController {
 ```@Param```
 ```@Query```
 ```@Data```
+```@Session```
+```@Request```
 
 ### Dependency Injection
 
