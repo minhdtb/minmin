@@ -2,6 +2,10 @@ import 'reflect-metadata';
 import {getParameters} from "../../common/Parameter";
 import {StdParameter} from "../../common/StdParameter";
 
+/**
+ *
+ * @deprecated Since version 0.0.34. Use @Request("session") instead.
+ */
 export function Session<Function>(): ParameterDecorator {
     return (target: Function, method: string, index: number) => {
         let parameters = getParameters(target) as any;
