@@ -128,7 +128,7 @@ class ApiController {
 ```@Param```
 ```@Query```
 ```@Data```
-```@Session```
+```@Session``` (deprecated)
 ```@Request```
 
 ### Dependency Injection
