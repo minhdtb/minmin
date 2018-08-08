@@ -98,7 +98,7 @@ import {Controller, Service, Inject} from "minmin"
 @Service()
 class MyService {
 
-  void action() {
+  action(): void {
   }
   
 }
