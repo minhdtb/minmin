@@ -12,7 +12,7 @@ import * as cors from 'cors'
 
 import {Error as RError, IResponse} from "./common/Response"
 
-const SESSION_SECRET = '220183';
+const DEFAULT_SESSION_SECRET = '220183';
 
 class Options {
     nuxt: any;
@@ -21,7 +21,9 @@ class Options {
 
 export class WebServer extends HttpServer {
 
-    public static readonly controllers: any[] = [];
+    public static readonly prototypeControllers: any[] = [];
+
+    private readonly controllers: any[];
 
     private express: express.Express;
 
@@ -34,6 +36,7 @@ export class WebServer extends HttpServer {
         super(application);
 
         this.root = undefined;
+        this.controllers = [];
 
         this.express = application;
         /* default routes */
@@ -41,7 +44,8 @@ export class WebServer extends HttpServer {
         this.express.use(bodyParser.json());
         this.express.use(cookieParser());
         this.express.use(session({
-            secret: SESSION_SECRET,
+            secret: process.env.SESSION_SECRET ? process.env.SESSION_SECRET : DEFAULT_SESSION_SECRET,
+            name: 'minmin.sid',
             resave: false,
             saveUninitialized: false,
             cookie: {maxAge: 1000 * 60 * 60 * 24}
@@ -63,6 +67,10 @@ export class WebServer extends HttpServer {
         return (result as IResponse).exec !== undefined;
     }
 
+    public getControllers() {
+        return this.controllers;
+    }
+
     public getRoot(): string | undefined {
         return this.root;
     }
@@ -72,10 +80,9 @@ export class WebServer extends HttpServer {
         return this;
     }
 
-    public start() {
-        this.initialize().then(() => {
-            super.start();
-        });
+    public async start(): Promise<any> {
+        await this.initialize();
+        return await super.start();
     }
 
     private resolveTarget(instance: any, target: any) {
@@ -99,7 +106,7 @@ export class WebServer extends HttpServer {
         }
 
         let router: any = express.Router();
-        let controllers = WebServer.controllers;
+        let controllers = WebServer.prototypeControllers;
         for (const controller of controllers) {
             let target = controller.prototype;
 
@@ -107,6 +114,8 @@ export class WebServer extends HttpServer {
             let parameters = Reflect.getOwnMetadata('custom:parameters', target);
 
             let instance = new controller;
+
+            this.controllers.push(instance);
 
             this.resolveTarget(instance, target);
 

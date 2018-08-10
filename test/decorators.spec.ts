@@ -1,10 +1,13 @@
 import {Controller, Inject, Service, WebServer} from "../src";
+import {expect} from "chai";
 
 @Service()
 class Service2 {
 
-    public test2() {
+    private testStr = "test2 nha";
 
+    public test2() {
+        return this.testStr;
     }
 }
 
@@ -15,7 +18,7 @@ class MyService {
     private service2: Service2;
 
     public test() {
-        console.log("hello");
+        return this.service2.test2();
     }
 }
 
@@ -26,20 +29,22 @@ class TestController {
     testService: MyService;
 
     public callTest() {
-        this.testService.test();
+        return this.testService.test();
     }
 }
 
 describe("Testing...", function () {
     let web: WebServer;
 
-    beforeEach(function () {
+    beforeEach(async function () {
         web = new WebServer();
         web.setPort(3001);
-        web.start();
+        await web.start();
     });
 
-    it("Test 1", function () {
-        process.exit(0);
+    it("Case 1", function () {
+        let controller = web.getControllers()[0];
+        let value = controller.callTest();
+        expect(value).to.be.equal("test2 nha");
     });
 });

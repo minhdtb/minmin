@@ -7,6 +7,6 @@ export function Controller(baseUrl?: string): ClassDecorator {
             setBaseUrl(target.prototype, baseUrl);
         }
 
-        WebServer.controllers.push(target);
+        WebServer.prototypeControllers.push(target);
     }
 }

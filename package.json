@@ -1,6 +1,6 @@
 {
   "name": "minmin",
-  "version": "0.0.35",
+  "version": "0.0.36",
   "repository": {
     "type": "git",
     "url": "https://github.com/minhdtb/minmin.git"
@@ -11,6 +11,7 @@
   "devDependencies": {
     "@types/body-parser": "^1.17.0",
     "@types/chai": "^4.1.4",
+    "@types/chai-as-promised": "^7.1.0",
     "@types/compression": "0.0.36",
     "@types/cookie-parser": "^1.4.1",
     "@types/cors": "^2.8.1",
@@ -21,6 +22,7 @@
     "@types/mocha": "^5.2.5",
     "@types/winston": "^2.3.6",
     "chai": "^4.1.2",
+    "chai-as-promised": "^7.1.1",
     "del": "^3.0.0",
     "gulp": "^3.9.1",
     "gulp-clean": "^0.3.2",
