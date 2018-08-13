@@ -15,7 +15,7 @@ export abstract class Parameter {
     }
 
     protected getRawValue(value: any): any {
-        if (!value)
+        if (typeof value === 'undefined')
             return null;
 
         const ctor = this.type as any;

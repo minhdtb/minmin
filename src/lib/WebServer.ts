@@ -152,7 +152,7 @@ export class WebServer extends HttpServer {
             }
 
             let result = route.callback.apply(instance, values);
-            if (typeof result.then === 'function') {
+            if (result && typeof result.then === 'function') {
                 try {
                     result = await result;
                 } catch (e) {
@@ -161,7 +161,7 @@ export class WebServer extends HttpServer {
                 }
             }
 
-            if (WebServer.validResponse(result)) {
+            if (result && WebServer.validResponse(result)) {
                 return result.exec(res);
             }
             else {

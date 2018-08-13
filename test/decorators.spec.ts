@@ -1,4 +1,4 @@
-import {Controller, Inject, Service, WebServer} from "../src";
+import {Controller, Data, Inject, Post, Result, Service, WebServer} from "../src";
 import {expect} from "chai";
 
 @Service()
@@ -22,7 +22,7 @@ class MyService {
     }
 }
 
-@Controller()
+@Controller("api")
 class TestController {
 
     @Inject()
@@ -30,6 +30,11 @@ class TestController {
 
     public callTest() {
         return this.testService.test();
+    }
+
+    @Post("test")
+    private testParam(@Data("testNumber") testNumber: string) {
+        console.log(testNumber);
     }
 }
 
