@@ -1,22 +1,20 @@
-## 1. Intro
+## 1. Introdution
 
-MinMin là một web framework nhỏ được viết bằng typescript dựa trên expressjs và lấy cảm hứng từ Spring Web
+MinMin is a tiny web framework entirely written in typescript, based on expressjs and inspired by Java Web
 
-## 2. Hướng dẫn sử dụng
+## 2. How to use
 
-### Cài đặt
+### Getting started
 
-Cài đặt minmin
+#### Install minmin
 
 ```npm install --save minmin```
 
-
-Thay đổi config của typescript trong tsconfig.json
+Change tsconfig.json looks like
 
 ```json
 {
-  "compilerOptions": {
-      ...
+  "compilerOptions": {     
       "lib": [
       "dom",
       "es2015"
@@ -24,15 +22,14 @@ Thay đổi config của typescript trong tsconfig.json
       "target": "es5",
       "moduleResolution": "node",
       "experimentalDecorators": true,
-      "emitDecoratorMetadata": true,
-      ...
+      "emitDecoratorMetadata": true,      
   }
 }
 ```
 
-### Khai báo Controller 
+#### Define controller 
 
-Đầu tiên chúng ta tạo file ```ApiController.ts``` sau đó khai báo controller với ```base url``` tương ứng là ```/api```
+Firstly we create ```ApiController.ts``` file then define controller with ```base url``` is ```/api```
 
 ```ts
 @Controller('api')
@@ -40,9 +37,9 @@ class ApiController {
 }
 ```
 
-### Khai báo thêm  request handler
+#### Define request handler
 
-Bước tiếp theo chúng ta khai báo request handler ví dụ như sau
+The next step, we need define request handler like this
 
 ```ts
 @Controller('api')
@@ -65,8 +62,7 @@ class ApiController {
   }
 }
 ```
-
-Đoạn code trên sẽ tương đương với http method handler trong expressjs như sau
+The upper code is equivalent with http method handler in expressjs like bellow
 ```js
 app.post('/api/login', function(req, res) {
    var username = req.body.username
@@ -75,22 +71,22 @@ app.post('/api/login', function(req, res) {
 })
 ```
 
-### Start server
+#### Start server
 
-Bước cuối cùng là start web server
+The last step is starting web server
 
 ```ts
 import {WebServer} from "minmin"
-import './controllers/ApiController' // rất quan trọng
+import './controllers/ApiController' // very important
 
 const server = new WebServer();
 server.setPort(3000);
 server.start();
 ```
 
-### Hỗ trợ Dependency Injection
+### Support Dependency Injection
 
-Hỗ trợ dependency injection bắt đầu từ phiên bản 0.0.32
+Support dependency injection since version 0.0.32
 
 ```ts
 import {Controller, Service, Inject} from "minmin"
@@ -114,7 +110,7 @@ class ApiController {
 
 ```
 
-## 3. Decorators
+## 3. Decorators list
 
 ### Methods
 
@@ -136,10 +132,14 @@ class ApiController {
 ```@Inject```
 ```@Service```
 
-## 4. Classes
+## 4. Classes list
 
 ```WebServer```
 ```Result```
 ```Error```
 ```View```
 
+## 5. Template and demo
+
+#### simple: https://github.com/minhdtb/minmin-template
+#### with NuxtJS: https://github.com/minhdtb/minmin-nuxt-template
