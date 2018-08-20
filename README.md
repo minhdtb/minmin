@@ -1,6 +1,6 @@
 ## 1. Introdution
 
-MinMin is a tiny web framework entirely written in typescript, based on expressjs and inspired by Java Web
+MinMin is a tiny web framework entirely written in typescript, based on [ExpressJS](https://expressjs.com/) and inspired by Java Web
 
 ## 2. How to use
 
