@@ -1,3 +1,8 @@
+![minmin logo](images/minmin-logo.png)
+
+
+[![Apache V2 License](http://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/minhdtb/minmin/blob/master/LICENSE)
+
 ## 1. Introduction
 
 MinMin is a tiny web framework entirely written in typescript, based on [ExpressJS](https://expressjs.com/) and inspired by Java Web
