@@ -77,7 +77,7 @@ The last step is starting web server
 
 ```ts
 import {WebServer} from "minmin"
-import './controllers/ApiController' // very important
+import './controllers/ApiController' // import the controller here (very important)
 
 const server = new WebServer();
 server.setPort(3000);
