@@ -62,7 +62,7 @@ class ApiController {
   }
 }
 ```
-The upper code is equivalent with http method handler in expressjs like bellow
+The upper code is equivalent to http method handler in expressjs like bellow
 ```js
 app.post('/api/login', function(req, res) {
    var username = req.body.username
