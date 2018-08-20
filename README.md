@@ -1,5 +1,4 @@
-![minmin logo](images/minmin-logo.png)
-
+<p align="center"><img align="center" src="https://github.com/minhdtb/minmin/blob/master/images/minmin-logo.png"/></p>
 
 [![Apache V2 License](http://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/minhdtb/minmin/blob/master/LICENSE)
 
