@@ -142,6 +142,7 @@ class ApiController {
 ```Result```
 ```Error```
 ```View```
+```Redirect```
 
 ## 5. Template and demo
 
