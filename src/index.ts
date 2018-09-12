@@ -28,4 +28,4 @@ export {Request} from "./lib/decorators/parameters/Request"
 export {Session} from "./lib/decorators/parameters/Session"
 export {Inject}  from "./lib/decorators/utils/Inject"
 export {Service}  from "./lib/decorators/utils/Service"
-export {Error, Result, View} from './lib/common/Response'
+export {Error, Result, View, Redirect} from './lib/common/Response'

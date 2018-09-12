@@ -161,7 +161,7 @@ export class WebServer extends HttpServer {
                     result = await result;
                 } catch (e) {
                     this.getLogger().error(e);
-                    result = new RError(500, 'Internal server error.');
+                    result = new RError('Internal server error.');
                 }
             }
 

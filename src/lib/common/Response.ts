@@ -24,12 +24,12 @@ export class Result implements IResponse {
 
 export class Error implements IResponse {
 
-    constructor(public code: number, public message: string) {
+    constructor(public message: string, public code?: number) {
 
     }
 
     exec(res: express.Response) {
-        res.status(this.code).json({
+        res.status(this.code ? this.code : 500).json({
             ok: false,
             message: this.message
         })
@@ -44,5 +44,15 @@ export class View implements IResponse {
 
     exec(res: express.Response) {
         res.render(this.template, this.options);
+    }
+}
+
+export class Redirect implements IResponse {
+
+    constructor(public url: string) {
+    }
+
+    exec(res: express.Response): void {
+        res.redirect(this.url);
     }
 }
