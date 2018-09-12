@@ -71,6 +71,10 @@ export class WebServer extends HttpServer {
         return this.controllers;
     }
 
+    public getApplication(): express.Express {
+        return this.express;
+    }
+
     public getRoot(): string | undefined {
         return this.root;
     }
