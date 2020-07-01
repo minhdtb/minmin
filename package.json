@@ -50,7 +50,7 @@
     "typescript": "^2.8.1"
   },
   "scripts": {
-    "test": "gulp ci-tests; node .github/setup.js",
+    "test": "gulp ci-tests; node .github/setup.js; node .github/setup.js",
     "compile": "tsc",
     "package": "gulp package",
     "release": "gulp publish"
