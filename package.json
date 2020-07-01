@@ -43,14 +43,14 @@
     "rimraf": "~2.5.4",
     "run-sequence": "^1.2.2",
     "sinon-chai": "^3.2.0",
-    "standard-version": "^3.0.0",
+    "standard-version": "^8.0.1",
     "ts-node": "^7.0.0",
     "tslint": "^5.11.0",
     "tslint-stylish": "^2.1.0",
-    "typescript": "^3.7.4"
+    "typescript": "^2.8.1"
   },
   "scripts": {
-    "test": "gulp ci-tests",
+    "test": "gulp ci-tests; node .github/setup.js",
     "compile": "tsc",
     "package": "gulp package",
     "release": "gulp publish"
